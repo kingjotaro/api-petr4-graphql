@@ -25,7 +25,6 @@ async function app() {
     const {url} = await server.listen()
 
     console.log(`Server on ${url}`);
-
 }
 
 app();
