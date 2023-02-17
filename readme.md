@@ -3,17 +3,11 @@ Esta é uma API GraphQL para consultar e gerenciar dados financeiros petr4.
 Ela utiliza as seguintes tecnologias:
 
 [Apollo Server](https://www.apollographql.com/docs/apollo-server/)
-
 [Class Validator](https://github.com/typestack/class-validator)
-
 [dotenv](https://github.com/motdotla/dotenv)
-
 [GraphQL](https://graphql.org)
-
 [Mongoose](https://mongoosejs.com)
-
 [Reflect Metadata](https://rbuckton.github.io/reflect-metadata/)
-
 [TypeGraphQL](https://typegraphql.com)
 
 ## Modelagem
@@ -29,15 +23,13 @@ volume: String!
 ## Mutations
 As seguintes mutações estão disponíveis:
 
-`createNewBook(createNewBook: createBook!):` Book!: Cria um novo dados com base nos parâmetros informados.
-
-`editBook(editBookObject: editBook!): Book!:` Edita um dados com base na data informada.
-
-`removeFromBook(date: String!): String!:` Remove um dados com base na data informada.
+`createNewBook(createNewBook: createBook!):` Book!: Cria um novo dados com base nos parâmetros informados.  
+`editBook(editBookObject: editBook!): Book!:` Edita um dados com base na data informada.  
+`removeFromBook(date: String!): String!:` Remove um dados com base na data informada.  
 
 ## Queries
-As seguintes queries estão disponíveis:
-
+As seguintes queries estão disponíveis: 
+ 
 `byDate(date: String!):` Book!: Retorna um dados com base na data informada.
 
 ## Como utilizar
