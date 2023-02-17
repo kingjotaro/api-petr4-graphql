@@ -2,7 +2,6 @@ import { Mutation, Query, Resolver, Arg } from "type-graphql";
 import { Book } from './models/User';
 import { UserMongo } from "../mongodb/database";
 import { createBook, editBook } from "./inputs/createBook";
-import { StringDecoder } from "string_decoder";
 
 
 
@@ -44,6 +43,8 @@ import { StringDecoder } from "string_decoder";
 
     @Mutation(() => Book)
       async editBook(@Arg("editBookObject") editBookObject: editBook) {
+        let editCheck = await UserMongo.findOne({ date: editBookObject.date });
+        if( editCheck) {
         const { date, open, max, min, close, priceAjst, volume } = editBookObject;
       
         const update = {
@@ -57,7 +58,8 @@ import { StringDecoder } from "string_decoder";
       
         return await UserMongo.findOneAndUpdate({ date }, update, { new: true })
       
-      
+        }
+        throw new Error ("Date not found")
       }
       
 
@@ -67,6 +69,6 @@ import { StringDecoder } from "string_decoder";
         if (checkthis3) {
           await UserMongo.deleteOne({ date: date})
           return "Date deleted"}
-        else return "Date not found"
+        throw new Error ("Date not found")
       };
   }
