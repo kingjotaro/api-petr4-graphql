@@ -7,12 +7,14 @@ import { StringDecoder } from "string_decoder";
 
 
 @Resolver()
+
   export class userResolvers {
+    
     @Query(() => Book)
       async byDate(@Arg("date") date: string) {
-        const checkthis = await UserMongo.findOne({ date: date });
-        if (checkthis) { 
-          return checkthis
+        let checkthis1 = await UserMongo.findOne({ date: date }); 
+        if (checkthis1) { 
+          return checkthis1
         } 
         else throw new Error("Date not found") 
     };
@@ -22,20 +24,25 @@ import { StringDecoder } from "string_decoder";
     @Mutation(()=> Book)
       async createNewBook(
         @Arg('createNewBook') createNewBookObject: createBook) {
-          const { date, open, max, min, close, priceAjst, volume } = createNewBookObject;
-          return await UserMongo.create(
-            { date,
-              open,
-              max,
-              min,
-              close,
-              priceAjst,
-              volume }
-          );
+          let checkthis2 = await UserMongo.findOne({ date: createNewBookObject.date });
+          if (checkthis2) {
+            throw new Error('Date already exist, use edit instead');
+  }
+            const { date, open, max, min, close, priceAjst, volume } = createNewBookObject;
+            return await UserMongo.create(
+                { date,
+                  open,
+                  max,
+                  min,
+                  close,
+                  priceAjst,
+                  volume }
+              );
+         
       }
      
 
-      @Mutation(() => Book)
+    @Mutation(() => Book)
       async editBook(@Arg("editBookObject") editBookObject: editBook) {
         const { date, open, max, min, close, priceAjst, volume } = editBookObject;
       
@@ -56,10 +63,10 @@ import { StringDecoder } from "string_decoder";
 
     @Mutation(()=> String)
       async removeFromBook(@Arg("date") date: string) {
-        const existingBook = await UserMongo.findOne({ date: date })
-        if (existingBook) {
-        await UserMongo.deleteOne({ date: date})
-        return "Date deleted"}
+        let checkthis3 = await UserMongo.findOne({ date: date });
+        if (checkthis3) {
+          await UserMongo.deleteOne({ date: date})
+          return "Date deleted"}
         else return "Date not found"
       };
   }
