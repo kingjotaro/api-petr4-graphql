@@ -19,24 +19,20 @@ Ela utiliza as seguintes tecnologias:
 ## Modelagem
 A API é composta por um modelo "Book" que contém as seguintes propriedades:
 
-close: String!
-
-date: String!
-
-max: String!
-
-
-open: String!
-
-priceAjst: String!
-
-volume: String!
+close: String!   
+date: String!  
+max: String!  
+open: String!  
+priceAjst: String!  
+volume: String!  
 
 ## Mutations
 As seguintes mutações estão disponíveis:
 
 `createNewBook(createNewBook: createBook!):` Book!: Cria um novo dados com base nos parâmetros informados.
+
 `editBook(editBookObject: editBook!): Book!:` Edita um dados com base na data informada.
+
 `removeFromBook(date: String!): String!:` Remove um dados com base na data informada.
 
 ## Queries
@@ -47,7 +43,7 @@ As seguintes queries estão disponíveis:
 ## Como utilizar
 Para utilizar a API, siga os seguintes passos:
 
-Clone este repositório em sua máquina.
-Instale as dependências com o comando `npm install`.
-Inicie o servidor com o comando `npm start`.
-Localhost padrão `http://localhost:4000/graphql`.
+Clone este repositório em sua máquina.  
+Instale as dependências com o comando `npm install`.  
+Inicie o servidor com o comando `npm start`.  
+Localhost padrão `http://localhost:4000/graphql`.  
