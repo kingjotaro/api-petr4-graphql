@@ -11,20 +11,19 @@ import { createBook, editBook } from "./inputs/createBook";
     
     @Query(() => Book)
       async byDate(@Arg("date") date: string) {
-        let checkthis1 = await UserMongo.findOne({ date: date }); 
-        if (checkthis1) { 
-          return checkthis1
+        let checkquery = await UserMongo.findOne({ date: date }); 
+        if (checkquery) { 
+          return checkquery
         } 
         else throw new Error("Date not found") 
     };
 
 
-    
     @Mutation(()=> Book)
       async createNewBook(
         @Arg('createNewBook') createNewBookObject: createBook) {
-          let checkthis2 = await UserMongo.findOne({ date: createNewBookObject.date });
-          if (checkthis2) {
+          let checkcreate = await UserMongo.findOne({ date: createNewBookObject.date });
+          if (checkcreate) {
             throw new Error('Date already exist, use edit instead');
   }
             const { date, open, max, min, close, priceAjst, volume } = createNewBookObject;
@@ -65,8 +64,8 @@ import { createBook, editBook } from "./inputs/createBook";
 
     @Mutation(()=> String)
       async removeFromBook(@Arg("date") date: string) {
-        let checkthis3 = await UserMongo.findOne({ date: date });
-        if (checkthis3) {
+        let checkremove = await UserMongo.findOne({ date: date });
+        if (checkremove) {
           await UserMongo.deleteOne({ date: date})
           return "Date deleted"}
         throw new Error ("Date not found")
